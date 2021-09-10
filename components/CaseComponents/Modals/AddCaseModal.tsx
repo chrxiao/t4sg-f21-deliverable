@@ -15,6 +15,7 @@ import { useMutation, useQuery } from "urql";
 import {
   ManagementCategory,
   ManagementContainerQuery,
+  CategoryData,
 } from "../CaseManagementContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -45,9 +46,14 @@ type AddCaseModalProps = {
   in this variable 
 */
 const InsertCaseMutation = `
-query MyQuery {
-  __typename # Placeholder value
-}
+mutation AddCasesMutation($name: String = "", $status: String = "", $description: String = "", $category_id: Int = 1) {
+    insert_cases_one(object: {name: $name, status: $status, description: $description, category_id: $category_id}) {
+      name
+      status
+      description
+      category_id
+    }
+  }  
 `;
 // END TODO
 
@@ -129,6 +135,10 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
                 to render a MenuItem with category id as the value, and the 
                 category name as the text.
               */}
+              {data.category.map((category: CategoryData, index: number) => 
+                <MenuItem key={index} value={category.id}>
+                  {category.name}
+                </MenuItem>)}
               {/* END TODO */}
             </Select>
           </FormControl>
