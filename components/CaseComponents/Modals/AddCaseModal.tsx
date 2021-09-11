@@ -15,7 +15,6 @@ import { useMutation, useQuery } from "urql";
 import {
   ManagementCategory,
   ManagementContainerQuery,
-  CategoryData,
 } from "../CaseManagementContainer";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -135,7 +134,7 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
                 to render a MenuItem with category id as the value, and the 
                 category name as the text.
               */}
-              {data.category.map((category: CategoryData, index: number) => 
+              {data.category.map((category: ManagementCategory, index: number) => 
                 <MenuItem key={index} value={category.id}>
                   {category.name}
                 </MenuItem>)}

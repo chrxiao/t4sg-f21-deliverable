@@ -9,11 +9,6 @@ import AddCaseModal from "./Modals/AddCaseModal";
 import { useQuery } from "urql";
 import AddCategoryModal from "./Modals/AddCategoryModal";
 
-type CategoryData = {
-  name: string;
-  id: number;
-};
-
 /* 
   FEATURE 1 TODO:
   Write a query that will get the name AND id of 
@@ -60,9 +55,9 @@ const CaseManagementContainer: React.FC = (props) => {
           Remember, the response is stored in the "data" variable!
         */}
         {data
-          ? data.category.map((c: CategoryData) => 
+          ? data.category.map((category: ManagementCategory) => 
             <Grid item xs={4}>
-              <CaseCategory category_id={c.id} />
+              <CaseCategory category_id={category.id} />
             </Grid>)
           : "Loading Data"}
         {/* END TODO */}
